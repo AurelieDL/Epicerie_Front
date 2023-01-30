@@ -1,4 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
+require('dotenv').config()
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -34,14 +35,14 @@ export default {
       }
     },
     
-    redirect: {
-      login: '/connexion',
-      logout: '/?logout=true',
-      callback: '/callback'
-    },
-    watchLoggedIn: true,
-    resetOnError: false,
-    rewriteRedirects: true
+    // redirect: {
+    //   login: '/',
+    //   logout: '/?logout=true',
+    //   callback: '/callback'
+    // },
+    // watchLoggedIn: true,
+    // resetOnError: false,
+    // rewriteRedirects: true
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

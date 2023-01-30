@@ -38,9 +38,13 @@ export default {
     login() {
       this.$auth.loginWith("local", {
         data: {
-          login: this.email,
+          email: this.email,
           password: this.text,
         },
+      })
+      .then(res => {
+        store.state.user.token = res.data.token;
+        console.log(store.state.user.token);
       });
     },
   },

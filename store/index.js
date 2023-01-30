@@ -1,17 +1,27 @@
 export const state = () => ({
-    counter: 0
+    counter: 0,
+    user: {
+      data: {},
+      token: null
+    }
   })
   
   export const getters = {
     getCounter(state) {
       return state.counter
+    },
+    getUser(state) {
+      return state.user
     }
   }
   
   export const mutations = {
     increment(state) {
       state.counter++
-    }
+    },
+    setUser (state, user) {
+      state.user = user
+    },
   }
   
   export const actions = {
