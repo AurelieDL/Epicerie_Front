@@ -47,7 +47,7 @@
         <v-icon>mdi-menu</v-icon>
       </v-app-bar-nav-icon>
       <v-spacer />
-      <v-toolbar-title>Adminhh</v-toolbar-title>
+      <v-toolbar-title>Admin</v-toolbar-title>
     </v-app-bar>
     <v-main>
       <v-container>
