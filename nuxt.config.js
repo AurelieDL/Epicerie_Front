@@ -1,4 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
+require('dotenv').config()
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -17,6 +18,31 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
+  },
+
+  router: {
+    middleware: ['auth']
+   },
+
+   auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/login', method: 'post', propertyName: 'token' },
+          logout: false,
+          user: { url: '/user', method: 'get', propertyName: '' }
+        }
+      }
+    },
+    
+    // redirect: {
+    //   login: '/',
+    //   logout: '/?logout=true',
+    //   callback: '/callback'
+    // },
+    // watchLoggedIn: true,
+    // resetOnError: false,
+    // rewriteRedirects: true
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -38,6 +64,8 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
