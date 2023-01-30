@@ -15,6 +15,7 @@
         </footer>
       </blockquote>
     </v-col>
+    
   </v-row>
 </template>
 
@@ -22,4 +23,4 @@
 export default {
   name: 'InspirePage'
 }
-</script>
+</script>          
