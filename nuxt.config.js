@@ -19,6 +19,31 @@ export default {
     ]
   },
 
+  router: {
+    middleware: ['auth']
+   },
+
+   auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/login', method: 'post', propertyName: 'token' },
+          logout: false,
+          user: { url: '/user', method: 'get', propertyName: '' }
+        }
+      }
+    },
+    
+    redirect: {
+      login: '/connexion',
+      logout: '/?logout=true',
+      callback: '/callback'
+    },
+    watchLoggedIn: true,
+    resetOnError: false,
+    rewriteRedirects: true
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
   ],
@@ -38,6 +63,8 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
   ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
