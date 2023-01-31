@@ -15,11 +15,11 @@
             ></v-img>
           </v-list-item-avatar>
           <v-list-item-content>
-              <v-list-item-title class="text-h6">
-                Sandra Adams
-              </v-list-item-title>
-              <v-list-item-subtitle>sandra_a88@gmail.ffcom</v-list-item-subtitle>
-            </v-list-item-content>
+            <v-list-item-title class="text-h6">
+              Sandra Adams
+            </v-list-item-title>
+            <v-list-item-subtitle>sandra_a88@gmail.ffcom</v-list-item-subtitle>
+          </v-list-item-content>
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item
@@ -38,16 +38,18 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar
-      app
-      :fixed="toolbar.fixed"
-      :clipped-left="toolbar.clippedleft"
-    >
+    <v-app-bar app :fixed="toolbar.fixed" :clipped-left="toolbar.clippedleft">
       <v-app-bar-nav-icon @click="drawer.open = !drawer.open">
         <v-icon>mdi-menu</v-icon>
       </v-app-bar-nav-icon>
       <v-spacer />
-      <v-toolbar-title>Admin</v-toolbar-title>
+      <div v-if="$auth.loggedIn">
+        {{ $auth.user.email }}
+        <v-btn text @click="$auth.logout()">Se déconnecter</v-btn>
+      </div>
+      <div v-else="">
+        <v-btn text to="/login">login</v-btn>
+      </div>
     </v-app-bar>
     <v-main>
       <v-container>
@@ -77,12 +79,12 @@ export default {
         permanent: true,
         // sets the drawer to the mini variant, showing only icons, of itself (true)
         // or showing the full drawer (false)
-        mini: true
+        mini: true,
       },
       toolbar: {
         fixed: false,
         // sets if the toolbar contents is leaving space for drawer (false) or not (true)
-        clippedleft: true
+        clippedleft: true,
       },
       fixed: false,
       items: [

@@ -30,5 +30,22 @@ export const state = () => ({
       const res = { data: 10 };
       state.counter = res.data;
       return res.data;
+    },
+    
+    logout(vuexContext) {
+      vuexContext.commit("clearToken");
+      Cookie.remove("jwt");
+      Cookie.remove("expirationDate");
+      if(process.client) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("expirationDate");
+      }
     }
   }
+
+
+
+
+
+  
+ 

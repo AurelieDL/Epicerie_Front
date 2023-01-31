@@ -36,16 +36,14 @@ export default {
 
   methods: {
     login() {
-      this.$auth.loginWith("local", {
-        data: {
-          email: this.email,
-          password: this.text,
-        },
-      })
-      .then(res => {
-        store.state.user.token = res.data.token;
-        console.log(store.state.user.token);
-      });
+      this.$auth
+        .loginWith("local", {
+          data: {
+            email: this.email,
+            password: this.text,
+          },
+        })
+        .then((res) => {});
     },
   },
 };
