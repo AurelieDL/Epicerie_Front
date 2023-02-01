@@ -36,8 +36,8 @@ export default {
     },
     
      redirect: {
-      // login: '/login',
-       logout: '/dashboard',
+       login: '/',
+       logout: '/login',
        
      },
      //watchLoggedIn: true,

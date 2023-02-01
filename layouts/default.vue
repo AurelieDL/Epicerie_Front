@@ -1,56 +1,54 @@
 <template>
   <v-app>
-    <v-navigation-drawer
-      v-model="drawer.open"
-      :mini-variant="drawer.mini"
-      :clipped="drawer.clipped"
-      expand-on-hover
-      app
-    >
-      <v-list>
-        <v-list-item class="px-2">
-          <v-list-item-avatar>
-            <v-img
-              src="https://randomuser.me/api/portraits/women/85.jpg"
-            ></v-img>
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title class="text-h6">
-              Sandra Adams
-            </v-list-item-title>
-            <v-list-item-subtitle>sandra_a88@gmail.ffcom</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-        <v-divider></v-divider>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-app-bar app :fixed="toolbar.fixed" :clipped-left="toolbar.clippedleft">
-      <v-app-bar-nav-icon @click="drawer.open = !drawer.open">
-        <v-icon>mdi-menu</v-icon>
-      </v-app-bar-nav-icon>
-      <v-spacer />
-      <div v-if="$auth.loggedIn">
-        {{ $auth.user.email }}
-        <v-btn text @click="$auth.logout()">Se déconnecter</v-btn>
-      </div>
-      <div v-else="">
-        <v-btn text to="/login">login</v-btn>
-      </div>
-    </v-app-bar>
+    <div v-if="$auth.loggedIn">
+      <v-navigation-drawer
+        v-model="drawer.open"
+        :mini-variant="drawer.mini"
+        :clipped="drawer.clipped"
+        expand-on-hover
+        app
+      >
+        <v-list>
+          <v-list-item class="px-2">
+            <v-list-item-avatar>
+              <v-icon>mdi-account-circle</v-icon>
+            </v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title class="text-h6">
+                {{ $auth.user.name }}
+              </v-list-item-title>
+              <v-list-item-subtitle>{{
+                $auth.user.email
+              }}</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+          <v-divider></v-divider>
+          <v-list-item
+            v-for="(item, i) in items"
+            :key="i"
+            :to="item.to"
+            router
+            exact
+          >
+            <v-list-item-action>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
+      <v-app-bar app :fixed="toolbar.fixed" :clipped-left="toolbar.clippedleft">
+        <v-app-bar-nav-icon @click="drawer.open = !drawer.open">
+          <v-icon>mdi-menu</v-icon>
+        </v-app-bar-nav-icon>
+        <v-spacer />
+        <div v-if="$auth.loggedIn">
+          <v-btn text @click="$auth.logout()">Se déconnecter</v-btn>
+        </div>
+      </v-app-bar>
+    </div>
     <v-main>
       <v-container>
         <Nuxt />
