@@ -91,6 +91,12 @@ export default {
           title: "Gestion de stock",
           to: "/stock",
         },
+
+        {
+          icon: "mdi-basket ",
+          title: "Articles",
+          to: "/article",
+        },
       ],
       right: true,
       rightDrawer: false,
