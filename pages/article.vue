@@ -11,11 +11,24 @@
           hide-details
         ></v-text-field>
       </v-card-title>
-      <v-data-table
-        :headers="headers"
-        :items="products"
-        :search="search"
-      ></v-data-table>
+      <v-data-table :headers="headers" :items="products" :search="search">
+        <template #[`item.price_ht`]="{ item }">
+          <p>{{ item.price_ht }} €</p>
+        </template>
+        <template #[`item.status.name`]="{ item }">
+          <v-chip v-if="item.status.id === 3" color="red">{{
+            item.status.name
+          }}</v-chip>
+
+          <v-chip v-if="item.status.id === 1" color="green">{{
+            item.status.name
+          }}</v-chip>
+
+          <v-chip v-if="item.status.id === 2" color="orange">{{
+            item.status.name
+          }}</v-chip>
+        </template>
+      </v-data-table>
     </v-card>
   </v-contain>
 </template>
