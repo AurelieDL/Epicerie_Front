@@ -29,20 +29,20 @@ export default {
       local: {
         endpoints: {
           login: { url: '/login', method: 'post', propertyName: 'token' },
-          logout: false,
-          user: { url: '/user', method: 'get', propertyName: '' }
+          logout: { url: '/login', method: 'delete'},
+          user: { url: '/user', method: 'get', propertyName: '' } 
         }
       }
     },
     
-    // redirect: {
-    //   login: '/',
-    //   logout: '/?logout=true',
-    //   callback: '/callback'
-    // },
-    // watchLoggedIn: true,
-    // resetOnError: false,
-    // rewriteRedirects: true
+     redirect: {
+       login: '/',
+       logout: '/login',
+       
+     },
+     //watchLoggedIn: true,
+     //resetOnError: false,
+     //rewriteRedirects: true
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
