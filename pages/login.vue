@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card elevation="24">
     <v-form ref="form" v-model="valid" lazy-validation>
       <v-text-field
         v-model="email"

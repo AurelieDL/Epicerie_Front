@@ -47,6 +47,7 @@
         <div v-if="$auth.loggedIn">
           <v-btn text @click="$auth.logout()">Se déconnecter</v-btn>
         </div>
+        <v-btn @click="getUserInfo()">user info</v-btn>
       </v-app-bar>
     </div>
     <v-main>
@@ -102,6 +103,12 @@ export default {
       rightDrawer: false,
       title: "Vuetify.js",
     };
+  },
+  methods: {
+    getUserInfo() {
+      console.log("user info:");
+      this.$axios.get("/user-info/1").then((res) => console.log(res));
+    },
   },
 };
 </script>
