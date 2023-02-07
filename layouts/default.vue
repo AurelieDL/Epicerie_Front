@@ -39,15 +39,23 @@
           </v-list-item>
         </v-list>
       </v-navigation-drawer>
-      <v-app-bar app :fixed="toolbar.fixed" :clipped-left="toolbar.clippedleft">
+      <v-app-bar
+        color="#BFBBAF"
+        app
+        :fixed="toolbar.fixed"
+        :clipped-left="toolbar.clippedleft"
+      >
         <v-app-bar-nav-icon @click="drawer.open = !drawer.open">
           <v-icon>mdi-menu</v-icon>
         </v-app-bar-nav-icon>
         <v-spacer />
+
+        <v-toolbar-title>LE COMPTOIR DU VILLAGE</v-toolbar-title>
+        <v-spacer />
         <div v-if="$auth.loggedIn">
           <v-btn text @click="$auth.logout()">Se déconnecter</v-btn>
         </div>
-        <v-btn @click="getUserInfo()">user info</v-btn>
+        <!-- <v-btn @click="getUserInfo()">user info</v-btn> -->
       </v-app-bar>
     </div>
     <v-main>
@@ -80,12 +88,14 @@ export default {
         // or showing the full drawer (false)
         mini: true,
       },
+
       toolbar: {
         fixed: false,
         // sets if the toolbar contents is leaving space for drawer (false) or not (true)
         clippedleft: true,
       },
       fixed: false,
+
       items: [
         {
           icon: "mdi-warehouse ",
