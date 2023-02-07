@@ -1,6 +1,12 @@
-<template></template>
+<template>
+  <p>ceci est la page d'accueil</p>
+</template>
+
 <script>
 export default {
-  name: "IndexPage",
+  auth: false,
+  fetch({ redirect }) {
+    redirect(301, "/article");
+  },
 };
 </script>

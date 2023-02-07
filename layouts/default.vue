@@ -40,7 +40,7 @@
         </v-list>
       </v-navigation-drawer>
       <v-app-bar
-        color="#BFBBAF"
+        color="#ECEFF1"
         app
         :fixed="toolbar.fixed"
         :clipped-left="toolbar.clippedleft"
@@ -50,7 +50,9 @@
         </v-app-bar-nav-icon>
         <v-spacer />
 
-        <v-toolbar-title>LE COMPTOIR DU VILLAGE</v-toolbar-title>
+        <v-toolbar-title class="headline"
+          >LE COMPTOIR DU VILLAGE</v-toolbar-title
+        >
         <v-spacer />
         <div v-if="$auth.loggedIn">
           <v-btn text @click="$auth.logout()">Se déconnecter</v-btn>
