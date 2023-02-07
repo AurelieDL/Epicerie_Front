@@ -51,7 +51,9 @@
         <v-spacer />
 
         <v-toolbar-title class="headline"
-          >LE COMPTOIR DU VILLAGE</v-toolbar-title
+          ><a href="/article" class="test"
+            >LE COMPTOIR DU VILLAGE</a
+          ></v-toolbar-title
         >
         <v-spacer />
         <div v-if="$auth.loggedIn">
@@ -124,3 +126,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+.test {
+  text-decoration: none;
+  color: #690a68;
+}
+</style>
