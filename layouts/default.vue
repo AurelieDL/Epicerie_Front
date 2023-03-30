@@ -15,11 +15,10 @@
             </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title class="text-h6">
-                {{ $auth.user.name }}
+                {{ $auth.user.data.name }}
               </v-list-item-title>
-              <v-list-item-subtitle>{{
-                $auth.user.email
-              }}</v-list-item-subtitle>
+              <v-list-item-subtitle>
+                {{ $auth.user.data.email }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
           <v-divider></v-divider>

@@ -52,9 +52,9 @@ export default {
   }),
 
   methods: {
-    login() {
-      this.$auth
-        .loginWith("local", {
+    async login() {
+      await this.$auth
+        .loginWith("laravelSanctum", {
           data: {
             email: this.email,
             password: this.text,

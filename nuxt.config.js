@@ -24,25 +24,38 @@ export default {
     middleware: ['auth']
    },
 
-   auth: {
-    strategies: {
-      local: {
-        endpoints: {
-          login: { url: '/login', method: 'post', propertyName: 'token' },
-          logout: { url: '/login', method: 'delete'},
-          user: { url: '/user', method: 'get', propertyName: '' } 
-        }
-      }
-    },
+  //  auth: {
+  //   strategies: {
+  //     local: {
+  //       endpoints: {
+  //         login: { url: '/login', method: 'post', propertyName: 'token' },
+  //         logout: { url: '/login', method: 'delete'},
+  //         user: { url: '/user', method: 'get', propertyName: '' } 
+  //       }
+  //     }
+  //   },
     
-     redirect: {
-       login: '/',
-       logout: '/login',
+  //    redirect: {
+  //      login: '/',
+  //      logout: '/login',
        
-     },
-     //watchLoggedIn: true,
-     //resetOnError: false,
-     //rewriteRedirects: true
+  //    },
+  //    //watchLoggedIn: true,
+  //    //resetOnError: false,
+  //    //rewriteRedirects: true
+  // },
+  auth: {
+    strategies: {
+      laravelSanctum: {
+        provider: 'laravel/sanctum',
+        url: 'http://localhost:8000',
+        endpoints: {
+          login: { url: '/api/login', method: 'post', propertyName: 'token' },
+          //         logout: { url: '/login', method: 'delete'},
+          //         user: { url: '/user', method: 'get', propertyName: '' } 
+        }
+      },
+    },
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -52,6 +65,10 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
   ],
+
+  axios: {
+    credentials: true,
+  },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
