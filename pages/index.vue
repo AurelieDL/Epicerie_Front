@@ -1,6 +1,4 @@
-<template>
-  <p>ceci est la page d'accueil</p>
-</template>
+<template></template>
 
 <script>
 export default {
