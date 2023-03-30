@@ -17,6 +17,7 @@
 
           <v-text-field
             v-model="text"
+            type="password"
             :rules="[(v) => !!v || 'mot de passe obligatoire']"
             class="pl-2"
             label="Mot de passe"

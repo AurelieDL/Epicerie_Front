@@ -8,49 +8,53 @@
       ></v-text-field>
 
       <v-text-field
-        v-model="quantity"
+        v-model="productQuantity"
         label="Quantité"
         required="false"
       ></v-text-field>
 
       <v-select
-        v-model="select"
+        v-model="productPackaging"
         :items="items"
         :rules="[(v) => !!v || 'Veuillez sélectionner un choix']"
         label="Emballage"
         required
       ></v-select>
 
-      <v-text-field v-model="price_ht" label="Prix HT" required></v-text-field>
+      <v-text-field
+        v-model="productPrice_ht"
+        label="Prix HT"
+        required
+      ></v-text-field>
 
-      <v-text-field v-model="vat" label="TVA" required></v-text-field>
+      <v-text-field v-model="productVat" label="TVA" required></v-text-field>
 
       <v-text-field
-        v-model="margin_price"
+        v-model="productMargin_rate"
         label="Marge"
         required
       ></v-text-field>
 
       <v-text-field
-        v-model="price_ttc"
+        v-model="productPrice_ttc"
         label="Prix TTC"
         required
       ></v-text-field>
 
       <v-text-field
-        v-model="price_ttc"
+        v-model="productPrice_ttc"
         label="Prix TTC"
         required
       ></v-text-field>
 
       <v-text-field
-        v-model="supplier"
+        v-model="productSupplier"
         label="Fournisseur"
         required
       ></v-text-field>
 
       <div class="d-flex flex-column">
-        <v-btn color="success" class="mt-4" block @click="validate">
+        <v-btn color="success" class="mt-4" block @click="saveProduct">
           Ajouter
         </v-btn>
 
@@ -76,13 +80,26 @@ export default {
   name: "ArticleForm",
   data: () => ({
     items: ["Kilo", "Pack", "Unité", "Bouteille", "Canette"],
+    productName: "",
   }),
 
   methods: {
-    async validate() {
-      const { valid } = await this.$refs.form.validate();
-
-      if (valid) alert("Formulaire correct");
+    saveProduct() {
+      //POST de l'article, si ok fermer le form et revenir sur page article
+      this.$axios
+        .post("/products", {
+          name: this.productName,
+          quantity: this.productQuantity,
+          packaging: this.productPackaging,
+          price_ht: this.productPrice_ht,
+          vat: this.productVat,
+          margin_rate: this.productMargin_rate,
+          price_ttc: this.productPrice_ttc,
+          supplier: this.productSupplier,
+        })
+        .then((res) => {
+          this.products = res.data;
+        });
     },
 
     reset() {
