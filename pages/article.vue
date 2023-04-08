@@ -1,6 +1,7 @@
 <template>
   <v-contain>
-    <v-btn block nuxt to="/articleForm"> Ajouter un article </v-btn>
+    <!-- <v-btn block nuxt to="/articleForm"> Ajouter un article </v-btn> -->
+    <v-btn block @click="addProductDialog = true"> Ajouter un article </v-btn>
     <v-card>
       <v-card-title>
         <v-text-field
@@ -30,14 +31,17 @@
         </template>
       </v-data-table>
     </v-card>
-    <!-- test -->
+    <article-form v-model="addProductDialog"></article-form>
   </v-contain>
 </template>
 
 <script>
+import ArticleForm from "~/components/articleForm.vue";
 export default {
+  components: { ArticleForm },
   data() {
     return {
+      addProductDialog: false,
       search: "",
       headers: [
         {

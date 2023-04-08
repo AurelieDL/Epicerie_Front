@@ -35,9 +35,9 @@ export default {
   //     }
   //   },
     
-  //    redirect: {
-  //      login: '/',
-  //      logout: '/login',
+    //  redirect: {
+    //     login: '/',
+    //     logout: '/login',
        
   //    },
   //    //watchLoggedIn: true,
@@ -51,8 +51,8 @@ export default {
         url: 'http://localhost:8000',
         endpoints: {
           login: { url: '/api/login', method: 'post', propertyName: 'token' },
-          //         logout: { url: '/login', method: 'delete'},
-          //         user: { url: '/user', method: 'get', propertyName: '' } 
+          logout: { url: '/api/logout', method: 'get'},
+          // user: { url: '/user', method: 'get', propertyName: '' } 
         }
       },
     },
