@@ -23,27 +23,6 @@ export default {
   router: {
     middleware: ['auth']
    },
-
-  //  auth: {
-  //   strategies: {
-  //     local: {
-  //       endpoints: {
-  //         login: { url: '/login', method: 'post', propertyName: 'token' },
-  //         logout: { url: '/login', method: 'delete'},
-  //         user: { url: '/user', method: 'get', propertyName: '' } 
-  //       }
-  //     }
-  //   },
-    
-    //  redirect: {
-    //     login: '/',
-    //     logout: '/login',
-       
-  //    },
-  //    //watchLoggedIn: true,
-  //    //resetOnError: false,
-  //    //rewriteRedirects: true
-  // },
   auth: {
     strategies: {
       laravelSanctum: {
@@ -64,6 +43,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '~/plugins/filter.js' }
   ],
 
   axios: {
@@ -99,7 +79,16 @@ export default {
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
           success: colors.green.accent3
-        }
+        },
+        light: {
+          primary: 'd3ac07',
+          accent: colors.grey.darken3,
+          secondary: '02324f',
+          info: colors.teal.lighten1,
+          warning: colors.amber.base,
+          error: colors.deepOrange.accent4,
+          success: colors.green.accent3
+       }
       },
       treeShake: true
     }

@@ -1,81 +1,127 @@
 <template>
-  <v-dialog v-model="dialog" width="600" persistent>
-    <v-card>
-      <v-card-title><span>NOUVEL ARTICLE</span></v-card-title>
-      <v-form ref="form" v-model="valid" lazy-validation>
-        <v-text-field
-          v-model="productName"
-          label="Nom du produit"
-          required
-        ></v-text-field>
-
-        <v-text-field
-          v-model="productQuantity"
-          label="Quantité"
-          required="false"
-        ></v-text-field>
-
-        <v-select
-          v-model="productPackaging"
-          :items="items"
-          :rules="[(v) => !!v || 'Veuillez sélectionner un choix']"
-          label="Emballage"
-          required
-        ></v-select>
-
-        <v-text-field
-          v-model="productPrice_ht"
-          label="Prix HT"
-          required
-        ></v-text-field>
-
-        <v-text-field v-model="productVat" label="TVA" required></v-text-field>
-
-        <v-text-field
-          v-model="productMargin_rate"
-          label="Marge"
-          required
-        ></v-text-field>
-
-        <v-text-field
-          v-model="productPrice_ttc"
-          label="Prix TTC"
-          required
-        ></v-text-field>
-
-        <v-text-field
-          v-model="productPrice_ttc"
-          label="Prix TTC"
-          required
-        ></v-text-field>
-
-        <v-text-field
-          v-model="productSupplier"
-          label="Fournisseur"
-          required
-        ></v-text-field>
-
-        <div class="d-flex flex-column">
-          <v-btn color="success" class="mt-4" block @click="saveProduct">
-            Ajouter
-          </v-btn>
-
-          <v-btn color="error" class="mt-4" block @click="reset">
-            Effacer
-          </v-btn>
-
+  <v-dialog v-model="dialog" width="800" persistent>
+    <v-card width="100%">
+      <v-card-title class="white--text primary">
+        Ajouter un article
+      </v-card-title>
+      <v-card-text class="mt-3 pb-0">
+        <v-form ref="form" v-model="valid">
+          <v-row>
+            <v-col>
+              <v-text-field
+                v-model="productName"
+                label="Nom du produit"
+                :rules="[(v) => !!v || 'Nom du produit requis']"
+                outlined
+                dense
+                class="rounded-0"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row dense>
+            <v-col cols="12" sm="6">
+              <v-text-field
+                v-model="productSupplier"
+                label="Fournisseur"
+                :rules="[(v) => !!v || 'Nom du fournisseur requis']"
+                outlined
+                dense
+                class="rounded-0"
+              ></v-text-field>
+            </v-col>
+            <v-col>
+              <v-select
+                v-model="productPackaging"
+                :items="items"
+                :rules="[(v) => !!v || 'Veuillez sélectionner un choix']"
+                label="Emballage"
+                outlined
+                dense
+                class="rounded-0"
+              ></v-select>
+            </v-col>
+          </v-row>
+          <v-row dense>
+            <v-col cols="12" sm="4">
+              <v-text-field
+                v-model="productQuantity"
+                label="Quantité"
+                type="number"
+                :rules="[(v) => !!v || 'Quantité requise']"
+                outlined
+                dense
+                class="rounded-0"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" sm="4">
+              <v-text-field
+                v-model="productPrice_ht"
+                label="Prix HT"
+                type="number"
+                :rules="[(v) => !!v || 'prix HT requis']"
+                outlined
+                dense
+                class="rounded-0"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" sm="4">
+              <v-text-field
+                v-model="productVat"
+                label="TVA"
+                type="number"
+                :rules="[(v) => !!v || 'TVA requise']"
+                outlined
+                dense
+                class="rounded-0"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-row dense>
+            <v-col cols="12" sm="6">
+              <v-text-field
+                v-model="productMargin_rate"
+                label="Marge"
+                type="number"
+                :rules="[(v) => !!v || 'Marge requise']"
+                outlined
+                dense
+                class="rounded-0"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" sm="6">
+              <v-text-field
+                v-model="productPrice_ttc"
+                label="Prix TTC"
+                type="number"
+                :rules="[(v) => !!v || 'Prix TTC requis']"
+                outlined
+                dense
+                class="rounded-0"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+        </v-form>
+      </v-card-text>
+      <v-card-actions>
+        <v-col cols="auto">
           <v-btn
-            color="warning"
-            class="mt-4"
-            block
-            nuxt
-            to="/article"
-            @click="dialog = false"
-          >
+             color="error"
+             @click="reset(); dialog = false"
+            >
             Annuler
           </v-btn>
-        </div>
-      </v-form>
+        </v-col>
+        <v-spacer />
+        <v-col cols="auto">
+          <v-btn
+            color="primary"
+            :disabled="!valid"
+            @click="saveProduct"
+            >
+            Ajouter
+          </v-btn>
+        </v-col>
+      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
@@ -92,6 +138,14 @@ export default {
   data: () => ({
     items: ["Kilo", "Pack", "Unité", "Bouteille", "Canette"],
     productName: "",
+    productQuantity: "",
+    productPackaging: "",
+    productPrice_ht: "",
+    productVat: "",
+    productMargin_rate: "",
+    productPrice_ttc: "",
+    productSupplier: "",
+    valid: false,
   }),
 
   computed: {
@@ -107,7 +161,6 @@ export default {
 
   methods: {
     saveProduct() {
-      //POST de l'article, si ok fermer le form et revenir sur page article
       this.$axios
         .post("/products", {
           name: this.productName,
@@ -121,17 +174,13 @@ export default {
         })
         .then((res) => {
           this.products = res.data;
+          this.$emit('refresh', 'create')
           this.dialog = false;
         });
     },
-
     reset() {
       this.$refs.form.reset();
-    },
-
-    resetValidation() {
-      this.$refs.form.resetValidation();
-    },
-  },
-};
+    }
+  }
+}
 </script>

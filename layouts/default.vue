@@ -101,12 +101,6 @@ export default {
 
       items: [
         {
-          icon: "mdi-warehouse ",
-          title: "Gestion de stock",
-          to: "/stock",
-        },
-
-        {
           icon: "mdi-basket ",
           title: "Articles",
           to: "/article",

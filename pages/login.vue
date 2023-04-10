@@ -14,6 +14,9 @@
             label="E-mail"
             required
           ></v-text-field>
+          <v-alert v-if="error" type="error" :value="true">
+                {{ error }}
+              </v-alert>
 
           <v-text-field
             v-model="text"
@@ -46,6 +49,7 @@ export default {
     valid: true,
     text: "",
     email: "",
+    error: null,
     emailRules: [
       (v) => !!v || "Merci d'indiquer votre e-mail",
       (v) => /.+@.+\..+/.test(v) || "l'e-mail doit être valide",
@@ -54,6 +58,7 @@ export default {
 
   methods: {
     async login() {
+      this.error = null
       await this.$auth
         .loginWith("laravelSanctum", {
           data: {
@@ -61,7 +66,13 @@ export default {
             password: this.text,
           },
         })
-        .then((res) => {});
+        .then((res) => {})
+        .catch((error) => {
+          if (error.response.status === 401) {
+            this.error =
+              "Identifiant ou mot de passe invalide."
+          } 
+         });
     },
   },
 };
