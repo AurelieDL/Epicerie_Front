@@ -2,7 +2,6 @@
   <v-container fluid>
     <Breadcrumbs :items="breadcrumbs" />
     <TitleWithCount :title="title" :total="total" />
-
     <v-row>
       <v-col class="text-right">
         <v-btn depressed color="primary"  @click="addProductDialog = true">
@@ -13,7 +12,6 @@
         </v-btn>
       </v-col>
     </v-row>
-
     <v-row>
       <v-col>
         <v-text-field
